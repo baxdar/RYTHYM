@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour {
+public class EntityManager : MonoBehaviour {
+    private GameObject player;
+    public delegate void spawnEnemies();
+    public spawnEnemies SpawnEnemies;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public static EntityManager EMInstance;
+    private void Awake() {
+        EMInstance = this;
+    }
 }

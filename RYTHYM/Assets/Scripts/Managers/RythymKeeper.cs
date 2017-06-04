@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RythymKeeper : MonoBehaviour {
 
-    public static RythymKeeper Instance;
+    public static RythymKeeper RKInstance;
 
     private bool onBeat;
     private bool upBeat;
@@ -54,6 +54,6 @@ public class RythymKeeper : MonoBehaviour {
     }
 
     void Awake() {
-        Instance = this;
+        RKInstance = this;
     }
 }

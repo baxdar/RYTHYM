@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,10 @@ public class Player : Entity {
     public override void Attack() {
         if (onAttacking != null)
             onAttacking();
+    }
+
+    public override void Die() {
+        throw new NotImplementedException();
     }
 }
 
@@ -25,6 +30,10 @@ public class Enemy1 : Entity {
 
     public override void Attack() {
     }
+
+    public override void Die() {
+
+    }
 }
 
 public class Weapon : MonoBehaviour {
@@ -39,7 +48,7 @@ public class Weapon : MonoBehaviour {
         // find out if on or up
         //IAttackable attackable = other.gameObject.Find();
         int damage = 0;
-        if (RythymKeeper.Instance.OnBeat) {
+        if (RythymKeeper.RKInstance.OnBeat) {
             damage = 2;
         }
         else {
