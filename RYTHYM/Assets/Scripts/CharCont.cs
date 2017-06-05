@@ -1,35 +1,58 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharCont : MonoBehaviour {
-    public float speed = 8;
-    public float jumpheight = 9;
-    private Vector3 movement;
-    private Rigidbody2D charRigidBody;
-    public bool tryJump;
-	// Use this for initialization
+public class CharCont : Entity {
+    private bool tryJump;
+    
     private bool isGrounded() {
-        return Physics2D.Raycast(transform.position, Vector2.down, .1f);
+        Vector2 temprayorigin = transform.position;
+        temprayorigin.y -= transform.lossyScale.y/2f;
+        temprayorigin.y -= .001f;
+
+        if (Physics2D.Raycast(temprayorigin, Vector2.down, .1f).collider != null) {
+            return true; }
+        return false;
     }
 
-	void Start () {
-        charRigidBody = GetComponent<Rigidbody2D>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        movement.x = Input.GetAxis("Horizontal");
-        if (Input.GetButton("Jump"))
+    public override void Attack() {
+        Debug.Log("Not Implemented Yet");
+    }
+
+    public override void Die() {
+        Debug.Log("Death not yet implemented");
+    }
+
+    void Start () {
+        eRigidBody = GetComponent<Rigidbody2D>();
+        speed = 6;
+        jumpheight = 10;
+        forcemult = 100;
+    }
+
+    // Update is called once per frame
+    void Update () {
+        movement = Input.GetAxis("Horizontal");
+        if (Input.GetButton("Jump") && isGrounded()) {
             tryJump = true;
+        }
+        if (Input.GetButtonDown("Fire1"))
+            Attack();
+        if (Input.GetButtonDown("Fire2"))
+            Debug.Log(isGrounded());
 	}
 
     void FixedUpdate() {
-        if (tryJump && isGrounded())
-            movement.y += jumpheight;
-        else
-            movement += Physics.gravity * Time.fixedDeltaTime;
-        charRigidBody.MovePosition(transform.position + movement * speed * Time.fixedDeltaTime);
+        if (tryJump && isGrounded()) {
+            if (RythymKeeper.Instance.OnBeat)
+                eRigidBody.AddForce(new Vector2(0, jumpheight * 150));
+            else
+                eRigidBody.AddForce(new Vector2(0, jumpheight * 100));
+            tryJump = false;
+        }
+        eRigidBody.velocity = new Vector2 (movement * speed * forcemult* Time.deltaTime, eRigidBody.velocity.y);
         transform.rotation = new Quaternion();
     }
+
 }

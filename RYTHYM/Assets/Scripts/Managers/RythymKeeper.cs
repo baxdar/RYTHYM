@@ -4,9 +4,23 @@ using UnityEngine;
 
 public class RythymKeeper : MonoBehaviour {
 
-    public static RythymKeeper Instance;
+    public static RythymKeeper RKInstance;
 
-    public bool onBeat;
+    private bool onBeat;
+    private bool upBeat;
+
+    public bool OnBeat {
+        get {
+            return onBeat;
+        }
+    }
+
+    public bool UpBeat {
+        get {
+            return upBeat;
+        }
+    }
+
 
     public IEnumerator rythym(int bpm, float offbeatMargin = 1/8) {
         //since this coroutine deals with individual beats
@@ -19,24 +33,27 @@ public class RythymKeeper : MonoBehaviour {
         float onbeattiming = (beatDuration * offbeatMargin)/2;
         float eighthspacer = eighthnote - onbeattiming;
         onBeat = true;
+        upBeat = false;
         while (true) {
             //things that happen on the downbeat 
-            Debug.Log("downbeat");
+            //Debug.Log("downbeat");
+            upBeat = false;
             yield return new WaitForSeconds(onbeattiming);
             //things that happen when player isn't on tempo
             onBeat = false;
-            Debug.Log(onBeat);
+            //Debug.Log(onBeat);
             yield return new WaitForSeconds(eighthspacer);
+            upBeat = true;
             //things that happen in the middle of the beat.  Enemy Attacks etc.
             yield return new WaitForSeconds(eighthspacer);
             //things that happen when player is on tempo
             onBeat = true;
-            Debug.Log(onBeat);
+            //Debug.Log(onBeat);
             yield return new WaitForSeconds(onbeattiming);
         }
     }
 
     void Awake() {
-        Instance = this;
+        RKInstance = this;
     }
 }
