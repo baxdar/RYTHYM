@@ -45,7 +45,7 @@ public class CharCont : Entity {
 
     void FixedUpdate() {
         if (tryJump && isGrounded()) {
-            if (RythymKeeper.Instance.OnBeat)
+            if (RythymKeeper.RKInstance.OnBeat)
                 eRigidBody.AddForce(new Vector2(0, jumpheight * 150));
             else
                 eRigidBody.AddForce(new Vector2(0, jumpheight * 100));
