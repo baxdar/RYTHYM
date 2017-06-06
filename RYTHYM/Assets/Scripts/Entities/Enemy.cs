@@ -8,6 +8,9 @@ public abstract class Enemy : Entity {
 
     public abstract override void Die();
 
+    public abstract bool DetectPlayer();
+
+
     // Use this for initialization
     void Start () {
 		

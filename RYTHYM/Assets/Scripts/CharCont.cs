@@ -51,8 +51,6 @@ public class CharCont : Entity {
                 eRigidBody.AddForce(new Vector2(0, jumpheight * 100));
             tryJump = false;
         }
-        eRigidBody.velocity = new Vector2 (movement * speed * forcemult* Time.deltaTime, eRigidBody.velocity.y);
-        transform.rotation = new Quaternion();
+        eRigidBody.velocity = new Vector2 (movement * speed * forcemult * Time.deltaTime, eRigidBody.velocity.y);
     }
-
 }
