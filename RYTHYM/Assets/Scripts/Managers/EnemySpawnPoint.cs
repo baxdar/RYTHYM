@@ -6,8 +6,7 @@ public class EnemySpawnPoint : MonoBehaviour {
     public GameObject EnemyToSpawn;
 
     public void spawnEnemy() {
-        //instantiate gameobject at location 
-        //too lazy atm
+        Instantiate(EnemyToSpawn, transform.position, new Quaternion());
     }
 
 	void Start () {

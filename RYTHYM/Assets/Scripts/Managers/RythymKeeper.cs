@@ -21,7 +21,6 @@ public class RythymKeeper : MonoBehaviour {
         }
     }
 
-
     public IEnumerator rythym(int bpm, float offbeatMargin = 1/8) {
         //since this coroutine deals with individual beats
         //offbeat margin is multiplied by a quarter note
