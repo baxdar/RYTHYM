@@ -17,6 +17,8 @@ public class CharCont : Entity {
     }
 
     public override void Attack() {
+        if (onAttacking != null)
+            onAttacking();
         Debug.Log("Not Implemented Yet");
     }
 
@@ -26,9 +28,8 @@ public class CharCont : Entity {
 
     void Start () {
         eRigidBody = GetComponent<Rigidbody2D>();
-        speed = 6;
-        jumpheight = 10;
-        forcemult = 100;
+        speed = 10;
+        jumpheight = 20;
     }
 
     // Update is called once per frame
@@ -45,12 +46,10 @@ public class CharCont : Entity {
 
     void FixedUpdate() {
         if (tryJump && isGrounded()) {
-            if (RythymKeeper.RKInstance.OnBeat)
-                eRigidBody.AddForce(new Vector2(0, jumpheight * 150));
-            else
-                eRigidBody.AddForce(new Vector2(0, jumpheight * 100));
+            //eRigidBody.AddForce(new Vector2(0, jumpheight * 100));
+            eRigidBody.velocity = new Vector2(eRigidBody.velocity.x, jumpheight);
             tryJump = false;
         }
-        eRigidBody.velocity = new Vector2 (movement * speed * forcemult * Time.deltaTime, eRigidBody.velocity.y);
+        eRigidBody.velocity = new Vector2 (movement * speed, eRigidBody.velocity.y);
     }
 }

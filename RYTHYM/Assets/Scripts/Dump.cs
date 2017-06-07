@@ -3,25 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class Player : Entity {
-
-    public override void Attack() {
-        if (onAttacking != null)
-            onAttacking();
-    }
-
-    public override void Die() {
-        throw new NotImplementedException();
-    }
-}
-
 public class Enemy1 : Entity {
 
     private void Start() {
-        Player player = FindObjectOfType<Player>();
-        if (player != null)
-            player.onAttacking += Dodge;
+        
     }
 
     void Dodge() {

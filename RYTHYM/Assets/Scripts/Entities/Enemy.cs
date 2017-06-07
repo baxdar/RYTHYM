@@ -10,6 +10,9 @@ public abstract class Enemy : Entity {
 
     public abstract bool DetectPlayer();
 
+    public abstract void Patrol();
+
+    public abstract void MoveToPlayer();
 
     // Use this for initialization
     void Start () {

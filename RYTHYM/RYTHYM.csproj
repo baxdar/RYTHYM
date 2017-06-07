@@ -83,6 +83,7 @@
     <Compile Include="Assets\Scripts\Dump.cs" />
     <Compile Include="Assets\Scripts\Entities\Enemy.cs" />
     <Compile Include="Assets\Scripts\Entities\Entity.cs" />
+    <Compile Include="Assets\Scripts\Entities\IceCreamConeRobot.cs" />
     <Compile Include="Assets\Scripts\Managers\EnemySpawnPoint.cs" />
     <Compile Include="Assets\Scripts\Managers\EntityManager.cs" />
     <Compile Include="Assets\Scripts\Managers\RythymKeeper.cs" />

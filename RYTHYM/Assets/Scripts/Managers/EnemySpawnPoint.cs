@@ -6,15 +6,10 @@ public class EnemySpawnPoint : MonoBehaviour {
     public GameObject EnemyToSpawn;
 
     public void spawnEnemy() {
-        Instantiate(EnemyToSpawn, transform.position, new Quaternion());
+        Instantiate(EnemyToSpawn, transform.position, Quaternion.identity);
     }
 
 	void Start () {
         EntityManager.EMInstance.SpawnEnemies += spawnEnemy;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 }
