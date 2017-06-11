@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class CharCont : Entity {
     private bool tryJump;
-    
+    private float swipeOffsetX = 1.5f;
+    private float swipeOffsetY = 0;
+    public GameObject swipe;
+
     private bool isGrounded() {
         Vector2 temprayorigin = transform.position;
         temprayorigin.y -= transform.lossyScale.y/2f;
@@ -17,7 +20,9 @@ public class CharCont : Entity {
     }
 
     public override void Attack() {
-        Debug.Log("Not Implemented Yet");
+        Debug.Log("Not Fully Implemented Yet");
+        Instantiate(swipe, new Vector3(transform.position.x + swipeOffsetX, transform.position.y + swipeOffsetY, 10f), 
+            Quaternion.identity);
     }
 
     public override void Die() {
@@ -26,9 +31,8 @@ public class CharCont : Entity {
 
     void Start () {
         eRigidBody = GetComponent<Rigidbody2D>();
-        speed = 6;
-        jumpheight = 10;
-        forcemult = 100;
+        speed = 10;
+        jumpheight = 15;
     }
 
     // Update is called once per frame
@@ -45,12 +49,9 @@ public class CharCont : Entity {
 
     void FixedUpdate() {
         if (tryJump && isGrounded()) {
-            if (RythymKeeper.RKInstance.OnBeat)
-                eRigidBody.AddForce(new Vector2(0, jumpheight * 150));
-            else
-                eRigidBody.AddForce(new Vector2(0, jumpheight * 100));
+            eRigidBody.velocity = new Vector2(eRigidBody.velocity.x, jumpheight);
             tryJump = false;
         }
-        eRigidBody.velocity = new Vector2 (movement * speed * forcemult * Time.deltaTime, eRigidBody.velocity.y);
+        eRigidBody.velocity = new Vector2 (movement * speed, eRigidBody.velocity.y);
     }
 }
