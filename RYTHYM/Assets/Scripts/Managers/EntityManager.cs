@@ -11,13 +11,4 @@ public class EntityManager : MonoBehaviour {
     private void Awake() {
         EMInstance = this;
     }
-
-    private IEnumerator waittoSpawn() {
-        yield return new WaitForSeconds(.25f);
-        SpawnEnemies();
-    }
-
-    private void Start() {
-        waittoSpawn();
-    }
 }

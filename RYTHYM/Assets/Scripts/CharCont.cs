@@ -8,7 +8,6 @@ public class CharCont : Entity {
     private float swipeOffsetX = 1.5f;
     private float swipeOffsetY = 0;
     public GameObject swipe;
-    public GameObject empoweredswipe;
 
     private bool isGrounded() {
         Vector2 temprayorigin = transform.position;
@@ -16,20 +15,14 @@ public class CharCont : Entity {
         temprayorigin.y -= .001f;
 
         if (Physics2D.Raycast(temprayorigin, Vector2.down, .1f).collider != null) {
-            return true;
-        }
+            return true; }
         return false;
     }
 
     public override void Attack() {
         Debug.Log("Not Fully Implemented Yet");
-        if (RythymKeeper.RKInstance.OnBeat)
-            Instantiate(empoweredswipe, new Vector3(transform.position.x + swipeOffsetX, transform.position.y + swipeOffsetY, 10f),
+        Instantiate(swipe, new Vector3(transform.position.x + swipeOffsetX, transform.position.y + swipeOffsetY, 10f), 
             Quaternion.identity);
-        else {
-            Instantiate(swipe, new Vector3(transform.position.x + swipeOffsetX, transform.position.y + swipeOffsetY, 10f),
-            Quaternion.identity);
-        }
     }
 
     public override void Die() {
@@ -39,8 +32,7 @@ public class CharCont : Entity {
     void Start () {
         eRigidBody = GetComponent<Rigidbody2D>();
         speed = 10;
-        jumpheight = 20;
-        HP = 10;
+        jumpheight = 15;
     }
 
     // Update is called once per frame

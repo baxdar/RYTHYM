@@ -1,15 +1,11 @@
 fileFormatVersion: 2
-guid: 44dc86e691ae80d48969ba971dd90538
-timeCreated: 1497219752
+guid: 06ce38db6b6d34b409faac7656089a24
+timeCreated: 1497289468
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Mohawk_Mike_Run_0
-    21300002: Mohawk_Mike_Run_1
-    21300004: Mohawk_Mike_Run_2
-    21300006: Mohawk_Mike_Run_3
-    21300008: Mohawk_Mike_Run_4
-    21300010: Mohawk_Mike_Run_5
+    21300000: plutonium_core_0
+    21300002: plutonium_core_1
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -57,7 +53,7 @@ TextureImporter:
   textureFormatSet: 0
   platformSettings:
   - buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     textureFormat: -1
     textureCompression: 2
     compressionQuality: 50
@@ -65,7 +61,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     textureFormat: -1
     textureCompression: 2
     compressionQuality: 50
@@ -76,80 +72,28 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Mohawk_Mike_Run_0
-      rect:
-        serializedVersion: 2
-        x: 39
-        y: 506
-        width: 257
-        height: 291
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Mohawk_Mike_Run_1
-      rect:
-        serializedVersion: 2
-        x: 328
-        y: 500
-        width: 271
-        height: 292
-      alignment: 9
-      pivot: {x: 0.28047863, y: 0.52910477}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Mohawk_Mike_Run_2
-      rect:
-        serializedVersion: 2
-        x: 625
-        y: 504
-        width: 367
-        height: 293
-      alignment: 9
-      pivot: {x: 0.23601031, y: 0.51740336}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Mohawk_Mike_Run_3
+      name: plutonium_core_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 348
-        height: 372
-      alignment: 9
-      pivot: {x: 0.3730092, y: 0.41318622}
+        width: 218
+        height: 223
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Mohawk_Mike_Run_4
+      name: plutonium_core_1
       rect:
         serializedVersion: 2
-        x: 409
-        y: 0
-        width: 319
-        height: 293
-      alignment: 9
-      pivot: {x: 0.24424222, y: 0.5116024}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Mohawk_Mike_Run_5
-      rect:
-        serializedVersion: 2
-        x: 811
-        y: 0
-        width: 222
-        height: 294
-      alignment: 9
-      pivot: {x: 0.46171775, y: 0.53468823}
+        x: 287
+        y: 31
+        width: 83
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
