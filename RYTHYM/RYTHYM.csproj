@@ -80,14 +80,14 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CharCont.cs" />
     <Compile Include="Assets\Scripts\CharacterMovement.cs" />
-    <Compile Include="Assets\Scripts\Dump.cs" />
     <Compile Include="Assets\Scripts\Entities\Enemy.cs" />
     <Compile Include="Assets\Scripts\Entities\Entity.cs" />
+    <Compile Include="Assets\Scripts\Entities\IceCreamConeEnemy.cs" />
     <Compile Include="Assets\Scripts\Managers\EnemySpawnPoint.cs" />
     <Compile Include="Assets\Scripts\Managers\EntityManager.cs" />
     <Compile Include="Assets\Scripts\Managers\RythymKeeper.cs" />
     <Compile Include="Assets\Scripts\Managers\RythymManager.cs" />
-    <Compile Include="Assets\Scripts\SwipeController.cs" />
+    <Compile Include="Assets\Scripts\Managers\SwipeController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
