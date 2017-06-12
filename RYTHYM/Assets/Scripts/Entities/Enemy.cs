@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Enemy : Entity {
+    protected bool foundPlayer = false;
+
     public abstract override void Attack();
 
     public abstract override void Die();
