@@ -7,7 +7,6 @@ public class EnemySpawnPoint : MonoBehaviour {
 
     public void spawnEnemy() {
         Instantiate(EnemyToSpawn, transform.position, new Quaternion());
-        Debug.Log("Trying TO SPawn");
     }
 
 	void Start () {
