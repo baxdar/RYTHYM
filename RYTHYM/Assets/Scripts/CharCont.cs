@@ -23,6 +23,7 @@ public class CharCont : Entity {
     }
 
     public override void Attack() {
+        Debug.Log("Not Fully Implemented Yet");
         if (RythymKeeper.RKInstance.OnBeat)
             Instantiate(empoweredswipe, new Vector3(transform.position.x + swipeOffsetX, transform.position.y + swipeOffsetY, 10f),
             Quaternion.identity);

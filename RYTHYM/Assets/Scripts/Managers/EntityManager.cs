@@ -12,7 +12,12 @@ public class EntityManager : MonoBehaviour {
         EMInstance = this;
     }
 
-    private void Start() {
+    private IEnumerator waittoSpawn() {
+        yield return new WaitForSeconds(.25f);
         SpawnEnemies();
+    }
+
+    private void Start() {
+        waittoSpawn();
     }
 }
