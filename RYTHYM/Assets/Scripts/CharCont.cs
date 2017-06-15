@@ -9,6 +9,7 @@ public class CharCont : Entity {
     private float swipeOffsetY = 0;
     public GameObject swipe;
     public GameObject empoweredswipe;
+    private int screenWidth;
 
     private bool isGrounded() {
         Vector2 temprayorigin = transform.position;
@@ -35,23 +36,28 @@ public class CharCont : Entity {
         Debug.Log("Death not yet implemented");
     }
 
+    private void look(int width, int loc) {
+        //if (loc < width)
+
+    }
+
     void Start () {
+        screenWidth = Screen.width;
         eRigidBody = GetComponent<Rigidbody2D>();
         speed = 10;
         jumpheight = 20;
-        HP = 10;
+        hp = 10;
     }
 
     // Update is called once per frame
     void Update () {
+        //Debug.Log(Screen.height);
         movement = Input.GetAxis("Horizontal");
         if (Input.GetButton("Jump") && isGrounded()) {
             tryJump = true;
         }
         if (Input.GetButtonDown("Fire1"))
             Attack();
-        if (Input.GetButtonDown("Fire2"))
-            Debug.Log(isGrounded());
 	}
 
     void FixedUpdate() {

@@ -8,7 +8,10 @@ public abstract class Enemy : Entity {
 
     public abstract override void Attack();
 
-    public abstract override void Die();
+    public override void Die() {
+        //death anim goes here
+        DestroyObject(gameObject);
+    }
 
     public abstract bool DetectPlayer();
 

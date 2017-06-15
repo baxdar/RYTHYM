@@ -12,10 +12,6 @@ public class IceCreamConeEnemy : Enemy {
         throw new NotImplementedException();
     }
 
-    public override void Die() {
-        throw new NotImplementedException();
-    }
-
     public void Patrol() {
         
     }
@@ -25,11 +21,15 @@ public class IceCreamConeEnemy : Enemy {
         eRigidBody = GetComponent<Rigidbody2D>();
         speed = 8;
         jumpheight = 0;
-        HP = 2;
+        hp = 2;
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void OnTriggerEnter(Collider other) {
+           
+    }
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 }
