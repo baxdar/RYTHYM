@@ -5,6 +5,7 @@ using UnityEngine;
 public class RythymKeeper : MonoBehaviour {
 
     public static RythymKeeper RKInstance;
+    public AudioClip test;
 
     private bool onBeat;
     private bool upBeat;
@@ -21,7 +22,8 @@ public class RythymKeeper : MonoBehaviour {
         }
     }
 
-    public IEnumerator rythym(int bpm, float offbeatMargin = 1/8) {
+    public IEnumerator rythym(int bpm, float offbeatMargin = 0.25f)
+        {
         //since this coroutine deals with individual beats
         //offbeat margin is multiplied by a quarter note
         //1/8 * 1/2 = 1/32 by default
@@ -54,5 +56,6 @@ public class RythymKeeper : MonoBehaviour {
 
     void Awake() {
         RKInstance = this;
+
     }
 }
