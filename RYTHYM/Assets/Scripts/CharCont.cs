@@ -10,6 +10,8 @@ public class CharCont : Entity {
     public GameObject swipe;
     public GameObject empoweredswipe;
     private int screenWidth;
+    private bool facingLeft;
+    private Animator anim;
 
     private bool isGrounded() {
         Vector2 temprayorigin = transform.position;
@@ -23,7 +25,7 @@ public class CharCont : Entity {
     }
 
     public override void Attack() {
-        Debug.Log("Not Fully Implemented Yet");
+        anim.SetBool("attacking", true);
         if (RythymKeeper.RKInstance.OnBeat)
             Instantiate(empoweredswipe, new Vector3(transform.position.x + swipeOffsetX, transform.position.y + swipeOffsetY, 10f),
             Quaternion.identity);
@@ -31,6 +33,15 @@ public class CharCont : Entity {
             Instantiate(swipe, new Vector3(transform.position.x + swipeOffsetX, transform.position.y + swipeOffsetY, 10f),
             Quaternion.identity);
         }
+        StartCoroutine(WaitForEndOfAttack());
+    }
+
+    void Flip()
+    {
+        facingLeft = !facingLeft;
+        Vector2 newScale = transform.localScale;
+        newScale.x *= -1;
+        transform.localScale = newScale;
     }
 
     public override void Die() {
@@ -42,6 +53,12 @@ public class CharCont : Entity {
 
     }
 
+    IEnumerator WaitForEndOfAttack()
+    {
+        yield return new WaitForSeconds(.2f);
+        anim.SetBool("attacking", false);
+    }
+
     void Start () {
         screenWidth = Screen.width;
         eRigidBody = GetComponent<Rigidbody2D>();
@@ -50,16 +67,36 @@ public class CharCont : Entity {
         hp = 10;
     }
 
+    void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
+
     // Update is called once per frame
     void Update () {
         //Debug.Log(Screen.height);
         movement = Input.GetAxis("Horizontal");
+        if (Mathf.Abs(movement) > 0)
+        {
+            anim.SetFloat("speed", Mathf.Abs(movement));
+        }
+        anim.SetBool("grounded", isGrounded());
         if (Input.GetButton("Jump") && isGrounded()) {
             tryJump = true;
         }
         if (Input.GetButtonDown("Fire1"))
+        {
             Attack();
-	}
+        }
+        if (movement < 0 && !facingLeft)
+        {
+            Flip();
+        }
+        if (movement > 0 && facingLeft)
+        {
+            Flip();
+        }
+    }
 
     void FixedUpdate() {
         if (tryJump && isGrounded()) {
