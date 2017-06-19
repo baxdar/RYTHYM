@@ -12,13 +12,18 @@ public class CharCont : Entity {
     private int screenWidth;
     private bool facingLeft;
     private Animator anim;
+    public LayerMask groundMask;
+    private BoxCollider2D hitbox;
 
     private bool isGrounded() {
-        Vector2 temprayorigin = transform.position;
-        temprayorigin.y -= transform.lossyScale.y/2f;
-        temprayorigin.y -= .001f;
+        Vector2 temporigin = transform.position;
+        temporigin.y -= hitbox.size.y/2f;
+        Vector2 tempsize = new Vector2(hitbox.size.x, .2f);
+        
+        Debug.Log(Physics2D.BoxCast(temporigin, tempsize, 0f, Vector2.down, groundMask).collider);
 
-        if (Physics2D.Raycast(temprayorigin, Vector2.down, .1f).collider != null) {
+        if (Physics2D.BoxCast(
+            temporigin, tempsize, 90f, Vector2.down, groundMask).collider != null) {
             return true;
         }
         return false;
@@ -70,11 +75,11 @@ public class CharCont : Entity {
     void Awake()
     {
         anim = GetComponent<Animator>();
+        hitbox = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
     void Update () {
-        //Debug.Log(Screen.height);
         movement = Input.GetAxis("Horizontal");
         if (Mathf.Abs(movement) > 0)
         {
