@@ -1,9 +1,11 @@
 fileFormatVersion: 2
-guid: 39121c2c344c4404dbf4412e972ef9ff
-timeCreated: 1497311060
+guid: 0faa3e899da82b14f8fbe791a23c23b5
+timeCreated: 1497857095
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: BouncePadGreen_0
+    21300002: BouncePadGreen_1
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -34,7 +36,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -68,7 +70,33 @@ TextureImporter:
     overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: BouncePadGreen_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 176
+        width: 514
+        height: 260
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BouncePadGreen_1
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 0
+        width: 466
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
     outline: []
   spritePackingTag: 
   userData: 
