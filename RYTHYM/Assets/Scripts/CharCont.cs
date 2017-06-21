@@ -19,9 +19,7 @@ public class CharCont : Entity {
         Vector2 temporigin = transform.position;
         temporigin.y -= hitbox.size.y/2f;
         Vector2 tempsize = new Vector2(hitbox.size.x, .2f);
-        
-        Debug.Log(Physics2D.BoxCast(temporigin, tempsize, 0f, Vector2.down, groundMask).collider);
-
+   
         if (Physics2D.BoxCast(
             temporigin, tempsize, 90f, Vector2.down, groundMask).collider != null) {
             return true;
