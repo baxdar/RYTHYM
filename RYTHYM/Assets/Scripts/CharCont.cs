@@ -18,7 +18,7 @@ public class CharCont : Entity {
     private bool isGrounded() {
         Vector2 temporigin = transform.position;
         temporigin.y -= hitbox.size.y/2f;
-        Vector2 tempsize = new Vector2(hitbox.size.x, .2f);
+        Vector2 tempsize = new Vector2(hitbox.size.x, .1f);
    
         if (Physics2D.BoxCast(
             temporigin, tempsize, 90f, Vector2.down, groundMask).collider != null) {
@@ -30,10 +30,10 @@ public class CharCont : Entity {
     public override void Attack() {
         anim.SetBool("attacking", true);
         if (RythymKeeper.RKInstance.OnBeat)
-            Instantiate(empoweredswipe, new Vector3(transform.position.x + swipeOffsetX, transform.position.y + swipeOffsetY, 10f),
+            Instantiate(empoweredswipe, new Vector3(transform.localPosition.x + swipeOffsetX, transform.position.y + swipeOffsetY, 10f),
             Quaternion.identity);
         else {
-            Instantiate(swipe, new Vector3(transform.position.x + swipeOffsetX, transform.position.y + swipeOffsetY, 10f),
+            Instantiate(swipe, new Vector3(transform.localPosition.x + swipeOffsetX, transform.position.y + swipeOffsetY, 10f),
             Quaternion.identity);
         }
         StartCoroutine(WaitForEndOfAttack());
@@ -51,11 +51,6 @@ public class CharCont : Entity {
         Debug.Log("Death not yet implemented");
     }
 
-    private void look(int width, int loc) {
-        //if (loc < width)
-
-    }
-
     IEnumerator WaitForEndOfAttack()
     {
         yield return new WaitForSeconds(.2f);
@@ -63,7 +58,6 @@ public class CharCont : Entity {
     }
 
     void Start () {
-        screenWidth = Screen.width;
         eRigidBody = GetComponent<Rigidbody2D>();
         speed = 10;
         jumpheight = 20;
