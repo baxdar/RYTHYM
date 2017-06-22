@@ -12,13 +12,16 @@ public class CharCont : Entity {
     private int screenWidth;
     private bool facingLeft;
     private Animator anim;
+    public LayerMask groundMask;
+    private BoxCollider2D hitbox;
 
     private bool isGrounded() {
-        Vector2 temprayorigin = transform.position;
-        temprayorigin.y -= transform.lossyScale.y/2f;
-        temprayorigin.y -= .001f;
-
-        if (Physics2D.Raycast(temprayorigin, Vector2.down, .1f).collider != null) {
+        Vector2 temporigin = transform.position;
+        temporigin.y -= hitbox.size.y/2f;
+        Vector2 tempsize = new Vector2(hitbox.size.x, .1f);
+   
+        if (Physics2D.BoxCast(
+            temporigin, tempsize, 90f, Vector2.down, groundMask).collider != null) {
             return true;
         }
         return false;
@@ -27,11 +30,11 @@ public class CharCont : Entity {
     public override void Attack() {
         anim.SetBool("attacking", true);
         if (RythymKeeper.RKInstance.OnBeat)
-            Instantiate(empoweredswipe, new Vector3(transform.position.x + swipeOffsetX, transform.position.y + swipeOffsetY, 10f),
-            Quaternion.identity);
+            Instantiate(empoweredswipe, new Vector3(transform.position.x + (swipeOffsetX * transform.localScale.normalized.x), 
+                transform.position.y + swipeOffsetY, 10f), Quaternion.identity);
         else {
-            Instantiate(swipe, new Vector3(transform.position.x + swipeOffsetX, transform.position.y + swipeOffsetY, 10f),
-            Quaternion.identity);
+            Instantiate(swipe, new Vector3(transform.position.x + (swipeOffsetX * transform.localScale.normalized.x),
+                transform.position.y + swipeOffsetY, 10f), Quaternion.identity);
         }
         StartCoroutine(WaitForEndOfAttack());
     }
@@ -48,11 +51,6 @@ public class CharCont : Entity {
         Debug.Log("Death not yet implemented");
     }
 
-    private void look(int width, int loc) {
-        //if (loc < width)
-
-    }
-
     IEnumerator WaitForEndOfAttack()
     {
         yield return new WaitForSeconds(.2f);
@@ -60,7 +58,6 @@ public class CharCont : Entity {
     }
 
     void Start () {
-        screenWidth = Screen.width;
         eRigidBody = GetComponent<Rigidbody2D>();
         speed = 10;
         jumpheight = 20;
@@ -70,11 +67,11 @@ public class CharCont : Entity {
     void Awake()
     {
         anim = GetComponent<Animator>();
+        hitbox = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
     void Update () {
-        //Debug.Log(Screen.height);
         movement = Input.GetAxis("Horizontal");
         if (Mathf.Abs(movement) > 0)
         {
