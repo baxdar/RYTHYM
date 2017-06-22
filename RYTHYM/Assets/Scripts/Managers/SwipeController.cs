@@ -12,6 +12,6 @@ public class SwipeController : MonoBehaviour {
 	}
     void Update()
     {
-        spriteRenderer.material.color -= new Color(0f, 0f, 0f, .04f)* Time.deltaTime;
+        spriteRenderer.material.color -= new Color(0f, 0f, 0f, .04f) * Time.deltaTime;
     }
 }

@@ -30,11 +30,11 @@ public class CharCont : Entity {
     public override void Attack() {
         anim.SetBool("attacking", true);
         if (RythymKeeper.RKInstance.OnBeat)
-            Instantiate(empoweredswipe, new Vector3(transform.localPosition.x + swipeOffsetX, transform.position.y + swipeOffsetY, 10f),
-            Quaternion.identity);
+            Instantiate(empoweredswipe, new Vector3(transform.position.x + (swipeOffsetX * transform.localScale.normalized.x), 
+                transform.position.y + swipeOffsetY, 10f), Quaternion.identity);
         else {
-            Instantiate(swipe, new Vector3(transform.localPosition.x + swipeOffsetX, transform.position.y + swipeOffsetY, 10f),
-            Quaternion.identity);
+            Instantiate(swipe, new Vector3(transform.position.x + (swipeOffsetX * transform.localScale.normalized.x),
+                transform.position.y + swipeOffsetY, 10f), Quaternion.identity);
         }
         StartCoroutine(WaitForEndOfAttack());
     }
