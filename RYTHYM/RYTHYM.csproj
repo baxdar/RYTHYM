@@ -78,8 +78,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AnimationSetIdle.cs" />
-    <Compile Include="Assets\AnimationTurnOffDrilling.cs" />
     <Compile Include="Assets\Scripts\BeatTest.cs" />
     <Compile Include="Assets\Scripts\Behaviours\AnimationSetIdle.cs" />
     <Compile Include="Assets\Scripts\Behaviours\AnimationTurnOffDrilling.cs" />
@@ -97,7 +95,6 @@
     <Compile Include="Assets\Scripts\Managers\SwipeController.cs" />
     <Compile Include="Assets\Scripts\Parallax.cs" />
     <Compile Include="Assets\Scripts\ShippingCrateSpawn.cs" />
-    <Compile Include="Assets\ShippingCrateSpawn.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
