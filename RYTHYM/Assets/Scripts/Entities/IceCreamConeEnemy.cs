@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class IceCreamConeEnemy : Enemy {
     public LayerMask layermask;
+    private bool turnedAround;
 
     public override void Attack() {
         throw new NotImplementedException();
@@ -28,7 +29,7 @@ public class IceCreamConeEnemy : Enemy {
 
     public void Patrol() {
         eRigidBody.velocity = new Vector2(speed * movement, 0);
-        if (turnAround()) {
+        if (turnAround() != turnedAround) {
             Vector2 newscale = transform.localScale;
             newscale.x *= -1;
             transform.localScale = newscale;
@@ -45,6 +46,7 @@ public class IceCreamConeEnemy : Enemy {
         jumpheight = 0;
         hp = 2;
         movement = -1;
+        turnedAround = false;
 	}
 
     private void OnTriggerEnter(Collider other) {
