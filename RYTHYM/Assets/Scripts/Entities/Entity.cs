@@ -5,7 +5,6 @@ using UnityEngine;
 public abstract class Entity : MonoBehaviour {
     protected float speed;
     protected float jumpheight;
-    protected float forcemult = 1000;
     protected float movement;
     protected Rigidbody2D eRigidBody;
 
@@ -25,6 +24,7 @@ public abstract class Entity : MonoBehaviour {
     public void TakeDamage(int damage) {
         HP -= damage;
     }
+
     public abstract void Die();
 
     public abstract void Attack();

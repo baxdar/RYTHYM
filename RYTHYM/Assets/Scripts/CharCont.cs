@@ -6,10 +6,9 @@ using UnityEngine;
 public class CharCont : Entity {
     private bool tryJump;
     private float swipeOffsetX = 1.5f;
-    private float swipeOffsetY = 0;
+    private float swipeOffsetY = .5f;
     public GameObject swipe;
     public GameObject empoweredswipe;
-    private int screenWidth;
     private bool facingLeft;
     private Animator anim;
     public LayerMask groundMask;
@@ -17,11 +16,11 @@ public class CharCont : Entity {
 
     private bool isGrounded() {
         Vector2 temporigin = transform.position;
-        temporigin.y -= hitbox.size.y/2f;
-        Vector2 tempsize = new Vector2(hitbox.size.x, .1f);
+        temporigin.y -= (hitbox.size.y/2f) * .75f;
+        Vector2 tempsize = new Vector2(hitbox.size.x - .5f, .1f);
    
         if (Physics2D.BoxCast(
-            temporigin, tempsize, 90f, Vector2.down, groundMask).collider != null) {
+            temporigin, tempsize, 0f, Vector2.down, .1f, groundMask).collider != null) {
             return true;
         }
         return false;
@@ -29,13 +28,16 @@ public class CharCont : Entity {
 
     public override void Attack() {
         anim.SetBool("attacking", true);
+        GameObject cacheSwipe;
         if (RythymKeeper.RKInstance.OnBeat)
-            Instantiate(empoweredswipe, new Vector3(transform.position.x + (swipeOffsetX * transform.localScale.normalized.x), 
+            cacheSwipe = Instantiate(empoweredswipe, new Vector3(transform.position.x + (swipeOffsetX * transform.localScale.normalized.x), 
                 transform.position.y + swipeOffsetY, 10f), Quaternion.identity);
         else {
-            Instantiate(swipe, new Vector3(transform.position.x + (swipeOffsetX * transform.localScale.normalized.x),
+            cacheSwipe = Instantiate(swipe, new Vector3(transform.position.x + (swipeOffsetX * transform.localScale.normalized.x),
                 transform.position.y + swipeOffsetY, 10f), Quaternion.identity);
         }
+        if (transform.localScale.x < 0)
+            cacheSwipe.transform.localScale = new Vector3(-2, 2, 2);
         StartCoroutine(WaitForEndOfAttack());
     }
 
@@ -64,13 +66,11 @@ public class CharCont : Entity {
         hp = 10;
     }
 
-    void Awake()
-    {
+    void Awake() {
         anim = GetComponent<Animator>();
         hitbox = GetComponent<BoxCollider2D>();
     }
 
-    // Update is called once per frame
     void Update () {
         movement = Input.GetAxis("Horizontal");
         if (Mathf.Abs(movement) > 0)
